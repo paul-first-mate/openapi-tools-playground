@@ -52,18 +52,19 @@ export default function ChatbotPage() {
     setInput("");
     setIsLoading(true);
 
-    // Simulate bot response
-    setTimeout(() => {
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        content:
-          "I'm a simple chatbot interface. Connect me to an AI service to make me smarter!",
-        role: "assistant",
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, botMessage]);
-      setIsLoading(false);
-    }, 1000);
+    const response = await fetch("/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userMessage.content }),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to fetch bot response");
+      return;
+    }
+
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
