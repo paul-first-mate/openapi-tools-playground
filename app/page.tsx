@@ -60,6 +60,7 @@ export default function ChatbotPage() {
 
     if (!response.ok) {
       console.error("Failed to fetch bot response");
+      setIsLoading(false);
       return;
     }
 
