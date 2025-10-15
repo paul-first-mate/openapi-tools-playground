@@ -1,4 +1,6 @@
 import OpenAI from "openai";
+// This is a very simplified version of the tools we will need. Rutter integration will
+// live here in a similar structure eventually.
 
 export const toolDefs: { [key: string]: OpenAI.Responses.Tool } = {
   getDailyTransactions: {
@@ -23,8 +25,8 @@ export const toolDefs: { [key: string]: OpenAI.Responses.Tool } = {
 
 export const toolFns = {
   getDailyTransactions: (date: Date) => {
-    console.log("OpenAI called me!");
-    console.log("date");
+    console.log(`OpenAI called me! Getting transactions for date: ${date}`);
+
     // Mock daily tns
     return [
       { id: 1, date, amount: -25.5, description: "Coffee Shop" },

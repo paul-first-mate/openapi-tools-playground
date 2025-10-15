@@ -25,7 +25,7 @@ export default function ChatbotPage() {
       timestamp: new Date(),
     },
   ]);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("What are my transactions for today?");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -65,7 +65,16 @@ export default function ChatbotPage() {
     }
 
     const data = await response.json();
-    console.log(data);
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: (Date.now() + 1).toString(),
+        content: data.message,
+        role: "assistant",
+        timestamp: new Date(),
+      },
+    ]);
+    setIsLoading(false);
   };
 
   return (
