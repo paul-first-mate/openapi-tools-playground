@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
-import { toolDefs, toolFns } from "./(open-ai)/tools";
+import { toolDefs, toolFns } from "./tools";
 import { ResponseInput } from "openai/resources/responses/responses.mjs";
 
 const openai = new OpenAI();
